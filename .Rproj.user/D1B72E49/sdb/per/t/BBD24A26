@@ -1,0 +1,17 @@
+{
+    "contents" : "## Making exploratory plots -- 03/20/2015\n## Amanda Molling\n\n```{r, echo=FALSE}\nunzip(\"exdata-data-household_power_consumption.zip\")\ndata <- read.table(\"household_power_consumption.txt\", sep = \";\")\n```\n## if you haven't already, install package \"date\" with \n## install.packages(\"date\")\n## example of date  conversion for this.\n\n```{r, echo=FALSE}\ndata2 <- data\ndata2$V1 <- as.Date(data$V1, \"%d/%m/%Y\")\n## I convert to appropriate units:\n\ndata3 <- data2[which( (data2$V1 == \"2007-02-01\") | (data2$V1 == \"2007-02-02\") ),]\ndata3$V3 <- as.numeric(levels(data3$V3))[data3$V3]\n\n\n##So data3 is our data subset for the days we are using.\n\npng(\"plot1.png\", width = 480, height = 480)\n\nhist(data3$V3, col = \"red\", main = \"Global Active Power\", xlab = \"Global Active Power (kilowatts)\")\n\ndev.off()\n\n```\n\n## Next Plot:\n\n```{r}\n\nfullTime <- strptime(paste(data3[,1], data3[,2]), \"%Y-%m-%d %H:%M:%S\")\npng(\"plot3.png\", width = 480, height = 480)\nplot(fullTime, data3$V9, type = \"l\", col = \"blue\")\n lines(fullTime, data3$V7, col = \"black\")\nlines(fullTime, data3$V8, col = \"red\")\nlegend(\"topright\", col = c(\"black\", \"red\", \"blue\"), c(\"Sub_metering_1\", \"Sub_metering_2\", \"Sub_metering_3\"), lwd = 1 )\n\n##data4<-data3\n##data4$V2 <- strptime(paste(data3[,1], data3[,2]), \"%Y-%m-%d %H:%M:%S\")\n##plot(fullTime, data3$V9, type = \"l\", xlab = \"\", ylab = \"Global Active Power  (kilowatts)\", col = \"blue\", )\n##lines(data3$V7, fullTime, col = \"pink\")\n##lines(data3$V8, fullTime, col = \"red\")\n\ndev.off()\n",
+    "created" : 1426862503415.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3973375705",
+    "id" : "BBD24A26",
+    "lastKnownWriteTime" : 1429993874,
+    "path" : "~/School Files/Open Courseware/Coursera/Exploratory Data Analysis/ExData_Plotting1/makePlots.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_markdown"
+}
