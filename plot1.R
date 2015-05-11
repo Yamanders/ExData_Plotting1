@@ -7,7 +7,7 @@
 getData <- function(filepath = "exdata-data-household_power_consumption.zip"){
   # This is the code to unzip the file if you need to 
   # unzip.
-  # unzip(filepath)
+   unzip(filepath)
   data <- read.table("household_power_consumption.txt", sep = ";")
   # Copied the data so that I could manipulate without changing 
   # the original table read
